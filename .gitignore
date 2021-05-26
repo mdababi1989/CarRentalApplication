@@ -14,3 +14,7 @@
 
 # "temporary" build files
 /target
+target
+.mvn
+mvnw
+mvnw.cmd
