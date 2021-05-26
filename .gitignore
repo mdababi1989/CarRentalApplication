@@ -1,0 +1,16 @@
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Java template
+*.class
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+*.classpath
+
+# "temporary" build files
+/target
