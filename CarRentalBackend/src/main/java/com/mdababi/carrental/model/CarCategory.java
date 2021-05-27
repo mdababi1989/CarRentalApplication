@@ -1,9 +1,6 @@
 package com.mdababi.carrental.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,6 +21,20 @@ public class CarCategory  extends BaseEntity implements Serializable {
     private String categoryName ;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Car> carList = new ArrayList<>();;
+    @Getter(AccessLevel.NONE)
+    private List<Car> carList = new ArrayList<>();
+
+
+    public void addCar(Car car){
+        carList.add(car);
+    }
+
+    public void removeCar(Car car){
+        carList.remove(car);
+    }
+
+    public List<Car> getCarsList(){
+        return new ArrayList<>(carList);
+    }
 
 }

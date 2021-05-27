@@ -2,10 +2,7 @@ package com.mdababi.carrental.model;
 
 
 import com.mdababi.carrental.validation.ValidPassword;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -40,6 +37,20 @@ public class Customer extends BaseEntity implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "customer")
+    @Getter(AccessLevel.NONE)
     private List<Rental> rentalList = new ArrayList<>();
+
+
+    public void addRental(Rental rental){
+        rentalList.add(rental);
+    }
+
+    public void removeCar(Rental rental){
+        rentalList.remove(rental);
+    }
+
+    public List<Rental> getRentalList(){
+        return new ArrayList<>(rentalList);
+    }
 
 }
