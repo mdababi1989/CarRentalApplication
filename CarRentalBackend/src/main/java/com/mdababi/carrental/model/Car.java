@@ -7,7 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -16,10 +17,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String registrationNumber;
+public class Car extends BaseEntity implements Serializable {
 
     @ManyToOne
     private CarCategory category;
