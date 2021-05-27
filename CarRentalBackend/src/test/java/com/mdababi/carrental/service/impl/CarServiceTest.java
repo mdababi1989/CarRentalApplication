@@ -65,6 +65,7 @@ class CarServiceTest {
         Car foundcar2 = service.findById(2L).orElse(null);
 
         assertNotNull(foundcar1);
+
         assertNotNull(foundcar2);
 
         assertEquals(2L, foundcar2.getId());
