@@ -1,7 +1,9 @@
 package com.mdababi.carrental.service.impl;
 
+import com.mdababi.carrental.exeptionsHandlers.RentalListNotEmptyExeption;
 import com.mdababi.carrental.model.Customer;
 import com.mdababi.carrental.repositories.CustomerRepository;
+import com.mdababi.carrental.repositories.RentalRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +27,8 @@ class CustomerServiceTest {
     CustomerRepository repository;
     @InjectMocks
     CustomerServiceImpl service;
+    @Mock
+    RentalRepository rentalRepository;
 
     Customer customer1, customer2;
 
@@ -70,16 +74,11 @@ class CustomerServiceTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws RentalListNotEmptyExeption {
+        when(repository.findById(1L)).thenReturn(Optional.of(customer1));
         service.deleteById(1L);
         verify(repository).deleteById(1L);
     }
 
-    @Test
-    void delete() {
-        service.delete(customer1);
-        service.delete(customer2);
-        verify(repository, times(2)).delete(any());
-    }
 
 }

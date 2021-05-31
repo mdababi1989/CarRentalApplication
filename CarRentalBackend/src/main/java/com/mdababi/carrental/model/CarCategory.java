@@ -1,5 +1,6 @@
 package com.mdababi.carrental.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,7 @@ public class CarCategory  extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @Getter(AccessLevel.NONE)
+    @JsonManagedReference
     private List<Car> carList = new ArrayList<>();
 
 

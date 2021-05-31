@@ -72,16 +72,10 @@ class RentalServiceTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws Exception {
         service.deleteById(1L);
         verify(repository).deleteById(1L);
     }
 
-    @Test
-    void delete() {
-        service.delete(rental1);
-        service.delete(rental2);
-        verify(repository, times(2)).delete(any());
-    }
 
 }

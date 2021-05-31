@@ -68,16 +68,10 @@ class LocationServiceTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws Exception {
         service.deleteById(1L);
         verify(repository).deleteById(1L);
     }
 
-    @Test
-    void delete() {
-        service.delete(location1);
-        service.delete(location2);
-        verify(repository, times(2)).delete(any());
-    }
 
 }

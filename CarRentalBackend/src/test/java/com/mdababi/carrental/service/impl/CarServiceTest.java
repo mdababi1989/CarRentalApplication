@@ -77,11 +77,5 @@ class CarServiceTest {
         verify(repository).deleteById(1L);
     }
 
-    @Test
-    void delete() {
-        service.delete(car1);
-        service.delete(car2);
-        verify(repository, times(2)).delete(any());
-    }
 
 }

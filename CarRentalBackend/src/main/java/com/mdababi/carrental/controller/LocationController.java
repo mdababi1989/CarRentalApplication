@@ -21,7 +21,7 @@ public class LocationController {
         return new ResponseEntity(savedLocation, HttpStatus.CREATED);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Location> getLocationById(@PathVariable("id") Long id) {
         Location location = locationService.findById(id).orElse(null);
         if (location == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -36,17 +36,8 @@ public class LocationController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteLocationById(@PathVariable("id") Long id) {
+    public void deleteLocationById(@PathVariable("id") Long id) throws Exception{
         locationService.deleteById(id);
     }
-
-    @DeleteMapping("/delete")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteLocation(@RequestBody Location location) {
-        if (location != null)
-            if (location.getId() > 0)
-                locationService.delete(location);
-    }
-
 
 }

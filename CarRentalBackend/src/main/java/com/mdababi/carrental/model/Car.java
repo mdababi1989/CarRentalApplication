@@ -1,5 +1,6 @@
 package com.mdababi.carrental.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mdababi.carrental.model.enums.CarType;
 import com.mdababi.carrental.model.enums.Transmission;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ import java.io.Serializable;
 public class Car extends BaseEntity implements Serializable {
 
     @ManyToOne
+    @JsonBackReference
     private CarCategory category;
 
     @NotBlank(message = "{Model is mandatory}")

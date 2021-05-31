@@ -1,7 +1,9 @@
 package com.mdababi.carrental.service.impl;
 
+import com.mdababi.carrental.exeptionsHandlers.CarCategoryNotEmptyExeption;
 import com.mdababi.carrental.model.CarCategory;
 import com.mdababi.carrental.repositories.CarCategoryRepository;
+import com.mdababi.carrental.repositories.CarRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +27,8 @@ class CarCategoryServiceTest {
     CarCategoryRepository repository;
     @InjectMocks
     CarCategoryServiceImpl service;
+    @Mock
+    CarRepository carRepository;
 
     CarCategory category1, category2;
 
@@ -68,16 +72,11 @@ class CarCategoryServiceTest {
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws CarCategoryNotEmptyExeption {
+        when(repository.findById(1L)).thenReturn(Optional.of(category1));
         service.deleteById(1L);
         verify(repository).deleteById(1L);
     }
 
-    @Test
-    void delete() {
-        service.delete(category1);
-        service.delete(category2);
-        verify(repository, times(2)).delete(any());
-    }
 
 }

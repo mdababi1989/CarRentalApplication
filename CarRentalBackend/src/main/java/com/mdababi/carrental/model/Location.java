@@ -16,7 +16,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Location extends BaseEntity implements Serializable {
 
-    @NonNull
     @NotBlank(message = "City name is mandatory")
     private String city ;
 
